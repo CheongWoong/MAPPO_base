@@ -68,6 +68,8 @@ class CentralizedActor(nn.Module):
             probs = Categorical(logits=logits)
             if action is None:
                 action = probs.sample()
+            else:
+                action = logits.argmax(-1)
             logprob = probs.log_prob(action)
             entropy = probs.entropy()
 

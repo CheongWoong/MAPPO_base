@@ -107,7 +107,7 @@ if __name__ == "__main__":
             logprobs[step] = logprob
 
             # TRY NOT TO MODIFY: execute the game and log data.
-            action = action.reshape((args.num_envs*envs.num_agents, -1)) ### Reshape for multi-agent
+            action = action.reshape((args.num_envs*envs.num_agents, -1)).squeeze(-1) ### Reshape for multi-agent
             next_obs, reward, done, info = envs.step(action.cpu().numpy())
             next_obs = next_obs.reshape((args.num_envs, envs.num_agents, -1)) ### Reshape for multi-agent
             reward = reward.reshape((args.num_envs, envs.num_agents)) ### Reshape for multi-agent

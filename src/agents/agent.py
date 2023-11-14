@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 
 from .critics import DecentralizedCritic, CentralizedCritic
-from .actors import DecentralizedActor, CentralizedActor, CommunicatedActor
+from .actors import DecentralizedActor, CentralizedActor#, CommunicatedActor
 
 
 class Agent(nn.Module):
@@ -19,8 +19,8 @@ class Agent(nn.Module):
             self.actor = DecentralizedActor(envs, hidden_dim=args.actor_hidden_dim)
         elif args.actor_type == "centralized":
             self.actor = CentralizedActor(envs, hidden_dim=args.actor_hidden_dim, num_heads=args.actor_num_heads)
-        elif args.actor_type == "communicated":
-            self.actor = CommunicatedActor(envs, hidden_dim=args.actor_hidden_dim, num_heads=args.actor_num_heads)
+        #elif args.actor_type == "communicated":
+        #    self.actor = CommunicatedActor(envs, hidden_dim=args.actor_hidden_dim, num_heads=args.actor_num_heads)
         else:
             raise Exception
 
